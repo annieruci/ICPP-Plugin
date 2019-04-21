@@ -1,5 +1,5 @@
 <div class="wrap">
- <h1>Selecciona Archivo Exel/h1>
+ <h3>Selecciona Archivo Exel</h3>
  <p></p>
 </div>
 

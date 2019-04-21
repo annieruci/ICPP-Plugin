@@ -5,6 +5,7 @@
 
 // Hook the 'admin_menu' action hook, run the function named 'icpp_Admin_Area()'
 
+
 add_action( 'admin_menu', 'icpp_Admin_Area' );
  
 // Add a new top level menu link to the ACP
@@ -65,5 +66,14 @@ function create_page($title,$content) {
         wp_insert_post( $post_data, $error_obj );
     
 }
+
+add_shortcode('tabla_busc_comp', 'shortcode_componentes');
+function shortcode_componentes() {
+    include(plugin_dir_path(__FILE__) . '/icpp-comp-page.php');
+}
+
+?>
+
+
 
 
