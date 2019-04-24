@@ -12,21 +12,44 @@ background: white;
 </style>
 <script type="text/javascript">
 //<![CDATA[
+var textarray = new Array();
 function recuperarFila(idfila) {
-var elTableRow = document.getElementById(idfila);
-elTableRow.style.backgroundColor =(elTableRow.style.backgroundColor=="cyan")?'white':'cyan';
- 
-if(elTableRow.style.backgroundColor == 'cyan'){
-var elTableCells = elTableRow.getElementsByTagName("td");
-//alert(elTableRow.innerHTML);
-    for (var i=0; i<elTableCells.length; i++) {
-      //alert(elTableCells[i].innerHTML);
-    }
-}
-}
-function vhtml(){
-var divx =document.getElementById('x');
-alert(divx.innerHTML);
+	var elTableRow = document.getElementById(idfila);
+	var elTextarea = document.getElementById('textarea-92');
+ 	var eliminar = '';
+	var cadena = '';
+	var pos = 0;
+	elTableRow.style.backgroundColor =(elTableRow.style.backgroundColor=="cyan")?'white':'cyan';
+
+	if(elTableRow.style.backgroundColor == 'cyan'){
+		textarray.push(elTableRow);
+	}
+	else{
+		var elTableCells = elTableRow.getElementsByTagName("td");
+		for (var i=0; i<elTableCells.length; i++) {
+			eliminar = eliminar + ' ' + elTableCells[i].innerHTML + ' ';
+		}
+		textarray.some(function(elTableRow) {
+			var elTableCells = elTableRow.getElementsByTagName("td");
+			var elim = ''; 
+		   	for (var i=0; i<elTableCells.length; i++) {
+				elim = elim + ' ' + elTableCells[i].innerHTML + ' ';
+			 }
+		 	if(elim == eliminar){
+				 textarray.splice(pos, 1);
+			 }
+			 pos++;
+		 });
+	}
+
+	textarray.forEach(function(elTableRow) {
+		var elTableCells = elTableRow.getElementsByTagName("td");
+		for (var i=0; i<elTableCells.length; i++) {
+			cadena = cadena + ' ' + elTableCells[i].innerHTML + ' '; 
+		}
+			cadena = cadena + '\n';
+	});
+	elTextarea.value = cadena;
 }
 //]]>
 
